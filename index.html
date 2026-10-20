@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#702d40">
+  <title>Литературная мастерская</title>
+  <style>
+    :root {
+      --wine: #702d40;
+      --wine-dark: #4c1d2b;
+      --cream: #fbf7f0;
+      --paper: #fffdf9;
+      --ink: #30262a;
+      --muted: #82757a;
+      --gold: #d7ae70;
+      --line: #eadfdc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    header {
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .logo { color: var(--wine); font-size: 19px; font-weight: bold; }
+    .logo span { color: var(--gold); }
+
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav button {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    nav button:hover { color: var(--wine); }
+
+    main { max-width: 1100px; margin: auto; padding: 36px 22px 70px; }
+
+    .hero {
+      background: var(--wine-dark);
+      color: white;
+      padding: 48px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font: 12px Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.1; margin: 18px 0; }
+    .hero p { max-width: 510px; line-height: 1.8; color: #f0e4e5; }
+    .hero .ornament {
+      position: absolute;
+      right: 35px;
+      bottom: -35px;
+      font-size: 190px;
+      opacity: .12;
+    }
+
+    .primary, .secondary {
+      border-radius: 9px;
+      padding: 13px 19px;
+      border: 1px solid var(--gold);
+      margin-top: 14px;
+    }
+
+    .primary { background: var(--gold); color: var(--wine-dark); }
+    .secondary { background: transparent; color: var(--wine); border-color: var(--line); }
+    .hero .secondary { color: white; border-color: #8d6470; margin-left: 8px; }
+
+    .section-title { margin: 42px 0 18px; }
+    .section-title h2 { font-size: 29px; margin: 0 0 8px; }
+    .section-title p { color: var(--muted); margin: 0; font: 14px Arial, sans-serif; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 23px;
+    }
+
+    .symbol { font-size: 29px; margin-bottom: 15px; }
+    .card h3 { font-size: 21px; margin: 0 0 10px; }
+    .card p { color: var(--muted); font: 14px/1.7 Arial, sans-serif; }
+    .card button { margin-top: 10px; }
+
+    .lesson {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 18px;
+      padding: 28px;
+      background: #f0e5df;
+      border-radius: 15px;
+    }
+
+    .lesson h3 { margin-top: 0; font-size: 22px; }
+    .lesson p, .lesson li { line-height: 1.8; }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 26px;
+      margin-top: 22px;
+    }
+
+    .panel h2 { margin-top: 0; }
+    .question { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .question p { font-weight: bold; }
+    .question label { display: block; margin: 12px 0; line-height: 1.5; }
+    input[type="text"] {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9c9c7;
+      border-radius: 8px;
+      background: white;
+      margin: 8px 0 14px;
+    }
+
+    #notice { line-height: 1.7; margin-top: 18px; }
+    .hidden { display: none; }
+    footer { text-align: center; padding: 25px; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 700px) {
+      header { align-items: flex-start; flex-direction: column; }
+      .hero { padding: 30px 23px; }
+      .hero .ornament { right: 8px; font-size: 100px; }
+      .grid { grid-template-columns: 1fr; }
+      .lesson { grid-template-columns: 1fr; }
+      .hero .secondary { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">✦ Литературная мастерская</div>
+    <nav>
+      <button onclick="showSection('home')">Главная</button>
+      <button onclick="showSection('review')">Повторение</button>
+      <button onclick="showSection('quiz')">Задания</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <div class="hero">
+        <div class="eyebrow">Читай · Думай · Открывай</div>
+        <h1>Литература<br>оживает на страницах</h1>
+        <p>Повторяй изученное, исследуй характеры героев, сравнивай персонажей и проверяй свои знания в интерактивных заданиях.</p>
+        <button class="primary" onclick="showSection('review')">Начать повторение →</button>
+        <button class="secondary" onclick="showSection('quiz')">Проверить знания</button>
+        <div class="ornament">❝</div>
+      </div>
+
+      <div class="section-title">
+        <h2>Твой маршрут</h2>
+        <p>Четыре шага к уверенному знанию произведения</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="symbol">📖</div>
+          <h3>Мини-повторение</h3>
+          <p>Вспомни сюжет, главные события и идеи произведения.</p>
+          <button class="secondary" onclick="showSection('review')">Открыть →</button>
+        </article>
+        <article class="card">
+          <div class="symbol">🎭</div>
+          <h3>Мир героев</h3>
+          <p>Изучи характеры, мотивы, поступки и отношения персонажей.</p>
+          <button class="secondary" onclick="showSection('review')">Изучить →</button>
+        </article>
+        <article class="card">
+          <div class="symbol">✍️</div>
+          <h3>Проверь себя</h3>
+          <p>Ответь на вопросы и проверь, насколько хорошо ты усвоил тему.</p>
+          <button class="secondary" onclick="showSection('quiz')">Начать тест →</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="review" class="hidden">
+      <div class="section-title">
+        <h2>Повторение материала</h2>
+        <p>Здесь будут материалы по выбранному произведению</p>
+      </div>
+      <div class="lesson">
+        <div>
+          <h3>📚 Краткое содержание</h3>
+          <p>Добавь сюда краткий пересказ произведения, основные события, тему и главную мысль.</p>
+          <p><strong>Автор:</strong> укажи имя автора.</p>
+          <p><strong>Главная тема:</strong> заполни после выбора произведения.</p>
+        </div>
+        <div>
+          <h3>🎭 Характеристика героев</h3>
+          <p><strong>Герой 1.</strong> Опиши характер, цели, поступки и отношение к другим персонажам.</p>
+          <p><strong>Герой 2.</strong> Добавь примеры из текста и важные цитаты.</p>
+          <h3>⚖️ Сравнение персонажей</h3>
+          <p>Сравни их характеры, жизненные ценности, решения и последствия поступков.</p>
+        </div>
+      </div>
+      <button class="primary" onclick="showSection('quiz')">Перейти к заданиям →</button>
+    </section>
+
+    <section id="quiz" class="hidden">
+      <div class="section-title">
+        <h2>Проверь свои знания</h2>
+        <p>Демонстрационный тест — вопросы можно заменить своими</p>
+      </div>
+
+      <form class="panel" id="quizForm">
+        <label for="studentName"><strong>Твоё имя и фамилия</strong></label>
+        <input id="studentName" name="studentName" type="text" placeholder="Например, Анна Иванова" required>
+
+        <div class="question">
+          <p>1. Что обычно помогает раскрыть характер литературного героя?</p>
+          <label><input type="radio" name="q1" value="a" required> Только его внешность</label>
+          <label><input type="radio" name="q1" value="b"> Его поступки, речь и отношения с другими</label>
+          <label><input type="radio" name="q1" value="c"> Только название произведения</label>
+        </div>
+
+        <div class="question">
+          <p>2. Что важно учитывать при сравнении двух персонажей?</p>
+          <label><input type="radio" name="q2" value="a" required> Только их имена</label>
+          <label><input type="radio" name="q2" value="b"> Только количество страниц</label>
+          <label><input type="radio" name="q2" value="c"> Черты характера, цели и поступки</label>
+        </div>
+
+        <div class="question">
+          <p>3. Напиши, какой герой произведения тебе запомнился больше всего и почему.</p>
+          <input type="text" name="q3" placeholder="Твой ответ..." required>
+        </div>
+
+        <button class="primary" type="submit">Проверить ответы</button>
+        <div id="notice" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>Литературная мастерская · Учимся читать между строк</footer>
+
+  <script>
+    function showSection(id) {
+      ["home", "review", "quiz"].forEach(function(section) {
+        document.getElementById(section).classList.toggle("hidden", section !== id);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("quizForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const form = new FormData(event.target);
+      let score = 0;
+
+      if (form.get("q1") === "b") score++;
+      if (form.get("q2") === "c") score++;
+
+      const name = form.get("studentName").trim();
+
+      document.getElementById("notice").innerHTML =
+        "<h3>Спасибо за работу, " +
+        escapeText(name) +
+        "!</h3><p>Твои результаты: " + score +
+        " из 2 автоматически проверяемых вопросов.</p>" +
+        "<p>Развёрнутый ответ: «" + escapeText(form.get("q3")) +
+        "».</p><p><strong>Важно:</strong> это демонстрация. Пока ответы не сохраняются в кабинете учителя. Следующим шагом подключим базу данных.</p>";
+    });
+
+    function escapeText(value) {
+      return String(value).replace(/[&<>"']/g, function(char) {
+        return {
+          "&": "&amp;", "<": "&lt;", ">": "&gt;",
+          '"': "&quot;", "'": "&#39;"
+        }[char];
+      });
+    }
+  </script>
+</body>
+</html>
